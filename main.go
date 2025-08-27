@@ -5,15 +5,16 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/skufu/movies/handlers"
 	"github.com/skufu/movies/logger"
 )
 
 func initializeLogger() *logger.Logger {
 	logInstance, err := logger.NewLogger("movie.log")
-	defer logInstance.Close()
 	if err != nil {
 		log.Fatalf("Error initializing logger: %v", err)
 	}
+	// Remove defer as it will close the logger immediately, not when main() exits
 	return logInstance
 }
 
@@ -21,7 +22,13 @@ func main() {
 
 	logInstance := initializeLogger()
 
+	movieHandler := handlers.MovieHandler{}
+
+	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
+
+	//handle static files(frontend)
 	http.Handle("/", http.FileServer(http.Dir("public")))
+	fmt.Println("Serving Files")
 	const addr = "localhost:8080"
 	err := http.ListenAndServe(addr, nil)
 

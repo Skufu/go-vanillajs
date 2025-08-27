@@ -1,8 +1,8 @@
 package models
 
 type Actor struct {
-	ID        int
-	FirstName string
-	LastName  string
-	ImageURL  *string //nullable
+	ID       int
+	Name     string
+	LastName string
+	ImageURL *string //nullable
 }
