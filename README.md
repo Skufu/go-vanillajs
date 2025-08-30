@@ -293,7 +293,22 @@ clean_on_exit = true
 
 ### B1 - Import Data
 
-Set up a Postgres database and get a connection string, then, go to *import/install.go* and insert the string there.
+Set up a Postgres database and get your connection details. Copy the `env.example` file to `.env` in the `import` folder and fill in your database credentials:
+
+```bash
+cp env.example import/.env
+```
+
+Edit `import/.env` with your actual database credentials:
+
+```env
+DB_HOST=your-database-host
+DB_PORT=5432
+DB_USER=your-username
+DB_PASSWORD=your-password
+DB_NAME=your-database-name
+DB_SSLMODE=require
+```
 
 Get into the *import* folder, and run `go run install.go`. That should populate your database with all the data.
 

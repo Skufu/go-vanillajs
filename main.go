@@ -49,14 +49,18 @@ func main() {
 		log.Fatalf("Failed to initialize movie repository: %v", err)
 	}
 	//initialize movie handler
-	movieHandler := handlers.MovieHandler{
-		Storage: movieRepo, // ← Pass pointer directly (interface accepts it)
-		Logger:  logInstance,
-	}
+	movieHandler := handlers.NewMovieHandler(movieRepo, logInstance)
+	// authHandler := handlers.NewAuthHandler(userStorage, jwt, logInstance)
 
-	//initialize routes
-	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
-	http.HandleFunc("/api/movies/random", movieHandler.GetRandomMovies)
+	// Set up routes - specific routes first
+	http.HandleFunc("/api/movies/random/", movieHandler.GetRandomMovies) // Handle trailing slash
+	http.HandleFunc("/api/movies/top/", movieHandler.GetTopMovies)       // Handle trailing slash
+	http.HandleFunc("/api/movies/search/", movieHandler.SearchMovies)    // Handle trailing slash
+	http.HandleFunc("/api/movies/", movieHandler.GetMovie)               // This should be last - it's the catch-all
+	http.HandleFunc("/api/genres", movieHandler.GetGenres)
+	// TODO: Implement proper auth handlers
+	// http.HandleFunc("/api/account/register", authHandler.Register)
+	// http.HandleFunc("/api/account/authenticate", authHandler.Authenticate)
 
 	//handle static files(frontend)
 	http.Handle("/", http.FileServer(http.Dir("public")))
@@ -69,4 +73,5 @@ func main() {
 	}
 
 	fmt.Println("Server is running on port 8080")
+	// Test comment for Air rebuild - updated
 }

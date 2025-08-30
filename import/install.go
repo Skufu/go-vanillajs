@@ -5,14 +5,38 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
 	"strings"
 
 	_ "github.com/lib/pq"
 )
 
 func main() {
-	// Database connection string for your remote PostgreSQL database
-	connStr := "postgres://username:password@remote-host:port/database?sslmode=disable"
+	// Database connection string using environment variables
+	dbHost := os.Getenv("DB_HOST")
+	dbPort := os.Getenv("DB_PORT")
+	dbUser := os.Getenv("DB_USER")
+	dbPassword := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
+	dbSSLMode := os.Getenv("DB_SSLMODE")
+
+	if dbHost == "" || dbUser == "" || dbPassword == "" {
+		log.Fatal("Missing required environment variables: DB_HOST, DB_USER, DB_PASSWORD")
+	}
+
+	// Set defaults if not provided
+	if dbPort == "" {
+		dbPort = "5432"
+	}
+	if dbName == "" {
+		dbName = "defaultdb"
+	}
+	if dbSSLMode == "" {
+		dbSSLMode = "require"
+	}
+
+	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=%s",
+		dbUser, dbPassword, dbHost, dbPort, dbName, dbSSLMode)
 
 	// Open database connection
 	db, err := sql.Open("postgres", connStr)

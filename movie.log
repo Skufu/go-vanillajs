@@ -1,0 +1,30 @@
+ERROR: 2025/08/29 00:52:06 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
+ERROR: 2025/08/29 00:53:10 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/Batman": invalid syntax
+ERROR: 2025/08/29 00:53:17 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/id=4": invalid syntax
+ERROR: 2025/08/29 00:54:16 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/q=batman": invalid syntax
+ERROR: 2025/08/29 00:54:17 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/q=batman": invalid syntax
+ERROR: 2025/08/29 00:54:38 logger.go:35: Invalid ID format: strconv.Atoi: parsing "": invalid syntax
+ERROR: 2025/08/29 00:54:45 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 00:54:48 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 00:55:11 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 00:55:34 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 00:55:36 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 00:55:53 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 00:56:40 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 00:56:46 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 00:57:16 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 00:57:17 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 00:57:18 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 00:59:07 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 01:00:42 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 01:01:02 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 01:02:56 logger.go:35: Invalid ID format: strconv.Atoi: parsing "top/": invalid syntax
+ERROR: 2025/08/29 01:03:00 logger.go:35: Failed to query movies: missing "=" after "your_database_url_here" in connection info string"
+ERROR: 2025/08/29 01:03:00 logger.go:35: Error getting top movies: missing "=" after "your_database_url_here" in connection info string"
+ERROR: 2025/08/29 01:05:58 logger.go:35: Failed to query movies: missing "=" after "your_database_url_here" in connection info string"
+ERROR: 2025/08/29 01:05:58 logger.go:35: Error getting top movies: missing "=" after "your_database_url_here" in connection info string"
+ERROR: 2025/08/29 01:06:27 logger.go:35: Failed to query movies: missing "=" after "your_database_url_here" in connection info string"
+ERROR: 2025/08/29 01:06:27 logger.go:35: Error getting top movies: missing "=" after "your_database_url_here" in connection info string"
+ERROR: 2025/08/29 01:06:28 logger.go:35: Failed to query movies: missing "=" after "your_database_url_here" in connection info string"
+ERROR: 2025/08/29 01:06:28 logger.go:35: Error getting top movies: missing "=" after "your_database_url_here" in connection info string"
+ERROR: 2025/08/29 01:07:52 logger.go:35: Invalid ID format: strconv.Atoi: parsing "": invalid syntax
