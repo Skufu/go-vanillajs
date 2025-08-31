@@ -1,0 +1,18 @@
+[33mcommit 0be982c5fd5305ca5c20d5f2f25f8244989f5095[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Skufu <agpfrancisco1@gmail.com>
+Date:   Sat Aug 30 16:18:42 2025 +0800
+
+    commit
+
+.air.toml
+.gitignore
+data/interfaces.go
+data/movie_repository.go
+handlers/movie_handler.go
+import/install.go
+main.go
+movie.log
+movies
+movies.exe
+tmp/build-errors.log
+tmp/movies.exe
