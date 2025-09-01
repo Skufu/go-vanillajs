@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strings"
 
 	"database/sql"
 	"os"
@@ -14,6 +15,16 @@ import (
 	"github.com/skufu/movies/handlers"
 	"github.com/skufu/movies/logger"
 )
+
+func customFileServer(fs http.FileSystem) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Set the correct MIME type for JavaScript modules
+		if strings.HasSuffix(r.URL.Path, ".js") {
+			w.Header().Set("Content-Type", "application/javascript")
+		}
+		http.FileServer(fs).ServeHTTP(w, r)
+	})
+}
 
 func initializeLogger() *logger.Logger {
 	logInstance, err := logger.NewLogger("movie.log")

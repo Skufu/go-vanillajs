@@ -2,3 +2,11 @@
 /import/
 .env
 
+movie.log
+movies
+movies.exe
+build/
+errors.log
+tmp/
+
+
