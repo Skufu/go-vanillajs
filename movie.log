@@ -28,3 +28,6 @@ ERROR: 2025/08/29 01:06:27 logger.go:35: Error getting top movies: missing "=" a
 ERROR: 2025/08/29 01:06:28 logger.go:35: Failed to query movies: missing "=" after "your_database_url_here" in connection info string"
 ERROR: 2025/08/29 01:06:28 logger.go:35: Error getting top movies: missing "=" after "your_database_url_here" in connection info string"
 ERROR: 2025/08/29 01:07:52 logger.go:35: Invalid ID format: strconv.Atoi: parsing "": invalid syntax
+ERROR: 2025/09/01 22:34:15 logger.go:35: Server Failed: listen tcp 127.0.0.1:8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ERROR: 2025/09/01 22:36:26 logger.go:35: Server Failed: listen tcp 127.0.0.1:8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+ERROR: 2025/09/01 22:37:23 logger.go:35: Server Failed: listen tcp 127.0.0.1:8080: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.

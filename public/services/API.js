@@ -17,9 +17,18 @@ export const API = {
     },
     fetch: async (serviceName, args) => {
         try{
+            
+            // Example: "movies/search/" + "?q=batman&order=score&genre=1"
             const queryString = args ? new URLSearchParams(args).toString() : "";
+
+            
+            // Example: "/api/movies/search/?q=batman&order=score&genre=1"
             const response = await fetch(API.baseURL + serviceName + '?' + queryString);
+
+            //  CONVERT TO JSON
             const result = await response.json();
+
+            //  RETURN THE DATA (this is what gets returned!)
             return result;
         } catch (e) {
             console.error(e);
