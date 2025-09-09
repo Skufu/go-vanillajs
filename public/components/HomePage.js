@@ -1,13 +1,9 @@
 import { API } from "../services/API.js";
-import { MovieItem } from "./MovieItem.js";
+import MovieItem from "./MovieItem.js";
 
 
-export class HomePage extends HTMLElement {
 
-    constructor() {
-        super();
-    }
-
+export default class HomePage extends HTMLElement {
 
     // ASYNC/AWAIT VERSION (modern way)
     async render() {

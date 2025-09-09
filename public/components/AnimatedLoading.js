@@ -1,4 +1,4 @@
-class AnimatedLoading extends HTMLElement {
+export default class AnimatedLoading extends HTMLElement {
     constructor() {
         super();
     }

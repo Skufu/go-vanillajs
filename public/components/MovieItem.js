@@ -5,7 +5,7 @@ class MovieItem extends HTMLElement {
     }
     connectedCallback() {
         this.innerHTML = `
-            <a href="#">
+            <a href="?id=${this.movie.id}">
                 <article>
                     <img src="${this.movie.poster_url}" alt="${this.movie.title} Poster">
                     <p>${this.movie.title} (${this.movie.release_year})</p>
@@ -19,4 +19,4 @@ class MovieItem extends HTMLElement {
 
 customElements.define("movie-item", MovieItem);
 
-export { MovieItem };
+export default MovieItem;
