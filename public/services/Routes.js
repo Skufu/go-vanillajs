@@ -1,5 +1,6 @@
-import { HomePage } from "../components/HomePage";
-import { MovieDetailsPage } from "../components/MovieDetailsPage";
+import HomePage from "../components/HomePage.js";
+import MovieDetailsPage from "../components/MovieDetailsPage.js";
+import MoviePage from "../components/MoviePage.js";
 
 export const routes = [
     {
@@ -11,9 +12,7 @@ export const routes = [
         component: MovieDetailsPage
     },
     {
-        path: "movies",
-        component: MoviesPage
-
+        path: "/movies",
+        component: MoviePage
     }
-
 ]

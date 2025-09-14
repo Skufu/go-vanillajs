@@ -1,7 +1,17 @@
-const Router = {
+import { routes } from "./Routes.js";
+
+export const Router = {
    init: () => {
     window.addEventListener("popstate", () => {
         Router.go(location.pathname, false);
+    });
+    //enhance current links in the docs
+    document.querySelectorAll("a.navlink").forEach(a => {
+        a.addEventListener("click", event => {
+            event.preventDefault();
+            const href = a.getAttribute("href");
+            Router.go(href);
+        });
     });
 
     //go to the intial route
@@ -12,7 +22,32 @@ const Router = {
     if (addToHistory) {
         history.pushState(null, "", route);
     }
+    let pageElement = null;
+    //todo
+    const routePath = route.includes('?') ? route.split('?')[0] : route;
 
+    for (const r of routes) {
+        if (typeof r.path === "string" && r.path === routePath) {
+            // String path
+            pageElement = new r.component();
+            break;
+        } else if (r.path instanceof RegExp) {
+            const match = r.path.exec(routePath);
+            // RegExp path
+            if (match) {
+                pageElement = new r.component();
+                const params = match.slice(1);
+                pageElement.params = params;
+                break;
+            }
+        }
+    }
 
-   }
+    if (pageElement == null) {
+        pageElement = document.createElement("h1");
+        pageElement.textContent = "Page not found";
+   } // page for current url
+    document.querySelector("main").innerHTML = "";
+    document.querySelector("main").appendChild(pageElement);
+}
 }

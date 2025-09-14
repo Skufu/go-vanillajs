@@ -63,3 +63,6 @@ ERROR: 2025/09/08 17:39:49 logger.go:35: Invalid ID format: strconv.Atoi: parsin
 ERROR: 2025/09/08 17:42:33 logger.go:35: Invalid ID format: strconv.Atoi: parsing "null": invalid syntax
 ERROR: 2025/09/08 17:46:02 logger.go:35: Invalid ID format: strconv.Atoi: parsing "null": invalid syntax
 ERROR: 2025/09/08 17:46:08 logger.go:35: Invalid ID format: strconv.Atoi: parsing "null": invalid syntax
+ERROR: 2025/09/14 16:38:16 logger.go:35: Error encoding JSON: write tcp 127.0.0.1:8080->127.0.0.1:44577: wsasend: An established connection was aborted by the software in your host machine.
+ERROR: 2025/09/14 16:42:14 logger.go:35: Error encoding JSON: write tcp 127.0.0.1:8080->127.0.0.1:44578: wsasend: An established connection was aborted by the software in your host machine.
+ERROR: 2025/09/14 17:05:02 logger.go:35: Error encoding JSON: write tcp 127.0.0.1:8080->127.0.0.1:44579: wsasend: An established connection was aborted by the software in your host machine.

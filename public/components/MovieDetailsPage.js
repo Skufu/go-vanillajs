@@ -78,9 +78,7 @@ export default class MovieDetailsPage extends HTMLElement {
 
     connectedCallback() {
         // Get movie ID from URL or attribute
-        const urlParams = new URLSearchParams(window.location.search);
-        this.id = urlParams.get('id') || this.getAttribute('movie-id') || 14; // Default to 14 if no ID provided
-
+        this.id = this.params[0];
         this.render();
     }
 }

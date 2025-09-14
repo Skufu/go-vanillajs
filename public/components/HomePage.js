@@ -3,6 +3,7 @@ import MovieItem from "./MovieItem.js";
 
 
 
+
 export default class HomePage extends HTMLElement {
 
     // ASYNC/AWAIT VERSION (modern way)
