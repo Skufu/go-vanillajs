@@ -59,7 +59,14 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to initialize movie repository: %v", err)
 	}
+
+	//initialize catch all client handler
+	catchAllClientHandler := func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./public/index.html")
+	}
+
 	//initialize movie handler
+
 	movieHandler := handlers.NewMovieHandler(movieRepo, logInstance)
 	// authHandler := handlers.NewAuthHandler(userStorage, jwt, logInstance)
 
@@ -68,7 +75,12 @@ func main() {
 	http.HandleFunc("/api/movies/top/", movieHandler.GetTopMovies)       // Handle trailing slash
 	http.HandleFunc("/api/movies/search/", movieHandler.SearchMovies)    // Handle trailing slash
 	http.HandleFunc("/api/movies/", movieHandler.GetMovie)               // This should be last - it's the catch-all
-	http.HandleFunc("/api/genres", movieHandler.GetGenres)
+	http.HandleFunc("/api/genres", movieHandler.GetGenres)               // Handle trailing slash
+
+	http.HandleFunc("/movies", catchAllClientHandler)   // Handle trailing slash
+	http.HandleFunc("/movies/", catchAllClientHandler)  // Handle trailing slash
+	http.HandleFunc("/account/", catchAllClientHandler) // Handle trailing slash
+
 	// TODO: Implement proper auth handlers
 	// http.HandleFunc("/api/account/register", authHandler.Register)
 	// http.HandleFunc("/api/account/authenticate", authHandler.Authenticate)

@@ -8,7 +8,8 @@ export default class MovieDetailsPage extends HTMLElement {
     async render() {
         try {
             this.movie = await API.getMovieById(this.id);
-        } catch {
+        } catch (error) {
+            console.error("Error fetching movie details:", error);
             alert("Error fetching movie details");
             return;
         }
@@ -24,60 +25,71 @@ export default class MovieDetailsPage extends HTMLElement {
 
         // Small delay to ensure DOM is fully updated
         setTimeout(() => {
-            this.querySelector("h2").textContent = this.movie.title;
-            this.querySelector("h3").textContent = this.movie.tagline;
-            this.querySelector("img").src = this.movie.poster_url;
-            this.querySelector("#trailer").dataset.url = this.movie.trailer_url;
-            this.querySelector("#overview").textContent = this.movie.overview;
-            this.querySelector("#metadata").innerHTML = `
-                <dt>Release Date</dt>
-                <dd>${this.movie.release_year}</dd>
-                <dt>Score</dt>
-                <dd>${this.movie.score} / 10</dd>
-                <dt>Popularity</dt>
-                <dd>${this.movie.popularity}</dd>
-            `;
+            try {
+                this.querySelector("h2").textContent = this.movie.title || "Unknown Title";
+                this.querySelector("h3").textContent = this.movie.tagline || "";
+                this.querySelector("img").src = this.movie.poster_url || "/images/generic_actor.jpg";
+                this.querySelector("#trailer").dataset.url = this.movie.trailer_url || "";
+                this.querySelector("#overview").textContent = this.movie.overview || "No overview available";
 
-            const ulGenres = this.querySelector("#genres");
-            ulGenres.innerHTML = "";
-            this.movie.genre.forEach(genre => {
-                const li = document.createElement("li");
-                li.textContent = genre.name;
-                ulGenres.appendChild(li);
-            });
-
-            const ulCast = this.querySelector("#cast");
-
-            if (!ulCast) {
-                console.error("Cast element (#cast) not found in the DOM!");
-                return;
-            }
-
-            ulCast.innerHTML = "";
-
-            if (!this.movie.casting || this.movie.casting.length === 0) {
-                console.warn("No cast data available for movie:", this.movie?.title);
-                const li = document.createElement("li");
-                li.textContent = "No cast information available";
-                li.style.color = "#888";
-                li.style.fontStyle = "italic";
-                ulCast.appendChild(li);
-                return;
-            }
-
-            this.movie.casting.forEach(actor => {
-                const li = document.createElement("li");
-                li.innerHTML = `
-                    <img src="${actor.image_url ?? '/images/generic_actor.jpg'}" alt="Picture of ${actor.last_name}">
-                    <p>${actor.first_name} ${actor.last_name}</p>
+                this.querySelector("#metadata").innerHTML = `
+                    <dt>Release Date</dt>
+                    <dd>${this.movie.release_year || "Unknown"}</dd>
+                    <dt>Score</dt>
+                    <dd>${this.movie.score || "N/A"} / 10</dd>
+                    <dt>Popularity</dt>
+                    <dd>${this.movie.popularity || "N/A"}</dd>
                 `;
-                ulCast.appendChild(li);
-            });
+
+                const ulGenres = this.querySelector("#genres");
+                ulGenres.innerHTML = "";
+                if (this.movie.genre && Array.isArray(this.movie.genre)) {
+                    this.movie.genre.forEach(genre => {
+                        const li = document.createElement("li");
+                        li.textContent = genre?.name || "Unknown Genre";
+                        ulGenres.appendChild(li);
+                    });
+                }
+
+                const ulCast = this.querySelector("#cast");
+
+                if (!ulCast) {
+                    console.error("Cast element (#cast) not found in the DOM!");
+                    return;
+                }
+
+                ulCast.innerHTML = "";
+
+                if (!this.movie.casting || !Array.isArray(this.movie.casting) || this.movie.casting.length === 0) {
+                    console.warn("No cast data available for movie:", this.movie?.title);
+                    const li = document.createElement("li");
+                    li.textContent = "No cast information available";
+                    li.style.color = "#888";
+                    li.style.fontStyle = "italic";
+                    ulCast.appendChild(li);
+                    return;
+                }
+
+                this.movie.casting.forEach(actor => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                        <img src="${actor?.image_url ?? '/images/generic_actor.jpg'}" alt="Picture of ${actor?.last_name || 'Unknown'}">
+                        <p>${actor?.first_name || ''} ${actor?.last_name || 'Unknown'}</p>
+                    `;
+                    ulCast.appendChild(li);
+                });
+            } catch (error) {
+                console.error("Error rendering movie details:", error);
+            }
         }, 10); // Small delay
     }
 
     connectedCallback() {
         // Get movie ID from URL or attribute
+        if (!this.params || !this.params[0]) {
+            console.error("Movie ID not found in params:", this.params);
+            return;
+        }
         this.id = this.params[0];
         this.render();
     }
